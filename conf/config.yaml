@@ -1,0 +1,9 @@
+defaults:
+  - data: data 
+  - hparams: params 
+  - preprocessing: preprocessing 
+  - task: task 
+  - _self_
+
+model:
+  isic_base: ${hydra:runtime.cwd}/models/base.pth

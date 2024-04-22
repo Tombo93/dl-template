@@ -1,0 +1,16 @@
+# Define useful paths
+raw_metadata: ${hydra:runtime.cwd}/data/raw/
+raw_data_dir: ${hydra:runtime.cwd}/data/raw/
+interim_metadata: ${hydra:runtime.cwd}/data/interim/
+interim_data: ${hydra:runtime.cwd}/data/interim/
+
+# Here can go pre-defined operation-descriptions on the data/metadata
+map_keys:
+  class_name: ["map_key1_to", "map_key2_to"] 
+
+dropna_subset: ["", ""]
+
+drop_rows:
+  col: 
+  label: ""
+
