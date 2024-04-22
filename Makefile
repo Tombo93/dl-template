@@ -1,4 +1,4 @@
-.PHONY: clean data cifar plot isic isic_7cls lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean data plot lint requirements sync_data_to_s3 sync_data_from_s3
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -27,26 +27,10 @@ requirements: dl-template
 	$(PYTHON_INTERPRETER) -m pip install -e .
 
 ## Make Dataset
-data:
-	$(PYTHON_INTERPRETER) src/data/make_data_dirs.py 
-# $(PYTHON_INTERPRETER) src/data/download_isic.py
+data: # generate the data here
 
-isic:
-	$(PYTHON_INTERPRETER) src/orchestrate.py
+plot: # use scripts for plotting here
 
-isic_7cls:
-	$(PYTHON_INTERPRETER) src/orchestrate.py data=isic_base_7cls preprocessing=isic_base_7cls
-
-isic_poison_whole_poison_class:
-	$(PYTHON_INTERPRETER) src/orchestrate.py  data.poison_whole_poison_class=True
-
-cifar:
-	$(PYTHON_INTERPRETER) src/data/make_cifar10.py
-
-plot:
-	$(PYTHON_INTERPRETER) src/visualization/plot_isic.py
-
-# $(PYTHON_INTERPRETER) src/data/make_dataset.py # data/raw data/processed
 
 ## Delete all compiled Python files
 clean:
