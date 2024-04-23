@@ -1,3 +1,4 @@
+from typing import callable
 import torch
 from torchvision.transforms import functional as F
 
@@ -25,3 +26,22 @@ class CustomImageCenterCrop(torch.nn.Module):
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}()"
+
+
+class ApplyBackdoor(torch.nn.Module):
+    def __init__(self, apply_to_img: callable):
+        super().__init__()
+        self._apply_to_img = apply_to_img
+
+    def forward(self, img, label):
+        """
+        Args:
+            img (PIL Image or Tensor)
+
+        Returns:
+            PIL Image or tensor with backdoor applied to image
+        """
+        if self._apply_to_img(label):
+           # apply backdoor function here
+            return img
+        return img
